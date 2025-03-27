@@ -1,0 +1,259 @@
+:root {
+    --color-env: hsl(0, 0%, 100%);
+    --color-env2: #ffffff;
+    --color-flap: #ff00d4;
+    --color-bg: #ffffff;
+    --color-heart: #ff00ae;
+    --color-sparkle: #fff;
+    --wax-red: #00b7ff;
+}
+
+#envelope {
+    position: relative;
+    width: 420px; /* Diperbesar dari 280px */
+    height: 270px; /* Diperbesar dari 180px */
+    border-bottom-left-radius: 9px; /* Sesuaikan dengan perubahan ukuran */
+    border-bottom-right-radius: 9px; /* Sesuaikan dengan perubahan ukuran */
+    margin: 0 auto;
+    top: 150px;
+    background-color: var(--color-flap);
+    box-shadow: 0 4px 20px rgba(0,0,0,.1);
+    cursor: pointer;
+}
+
+.front {
+    position: absolute;
+    width: 0;
+    height: 0;
+    z-index: 3;
+}
+
+.flap {
+    border-left: 210px solid transparent; /* Diperbesar dari 140px */
+    border-right: 210px solid transparent; /* Diperbesar dari 140px */
+    border-bottom: px solid transparent; /* Diperbesar dari 82px */
+    border-top: 147px solid var(--color-flap); /* Diperbesar dari 98px */
+    transform-origin: top;
+    pointer-events: none;
+}
+
+.pocket {
+    border-left: 210px solid var(--color-env); /* Diperbesar dari 140px */
+    border-right: 210px solid var(--color-env); /* Diperbesar dari 140px */
+    border-bottom: 135px solid var(--color-env2); /* Diperbesar dari 90px */
+    border-top: 135px solid transparent; /* Diperbesar dari 90px */
+    border-bottom-left-radius: 9px; /* Sesuaikan dengan perubahan ukuran */
+    border-bottom-right-radius: 9px; /* Sesuaikan dengan perubahan ukuran */
+}
+
+.letter {
+    position: relative;
+    background-color: #e0d9dd;
+    width: 90%;
+    margin: 0 auto;
+    height: 90%;
+    top: 5%;
+    border-radius: 9px; /* Sesuaikan dengan perubahan ukuran */
+    box-shadow: 0 2px 26px rgba(0,0,0,.08);
+    padding: 20px; /* Diperbesar dari 15px */
+    box-sizing: border-box;
+}
+
+.letter:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: linear-gradient(180deg, 
+        rgba(255,255,255,0.00) 25%, 
+        rgba(255, 255, 255, 0.7) 55%, 
+        rgb(255, 255, 255) 100%);
+}
+
+.message {
+    position: relative;
+    z-index: 2;
+    font-family: 'Handlee', cursive;
+    color: #000000;
+    text-align: center;
+    line-height: 1;
+    padding-top: 0px;
+}
+
+.message p {
+    margin: 15px 0; /* Diperbesar dari 10px */
+    font-size: 2.4em; /* Diperbesar dari 1.8em */
+    text-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); } /* Diperbesar dari -10px */
+}
+
+.envlope-wrapper {
+    height: 570px; /* Diperbesar dari 380px */
+    margin-top: 50px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.open .flap {
+    transform: rotateX(180deg);
+    transition: transform 0.4s ease, z-index 0.6s;
+    z-index: 1;
+}
+
+.close .flap {
+    transform: rotateX(0deg);
+    transition: transform 0.4s 0.6s ease, z-index 1s;
+    z-index: 5;
+}
+
+.close .letter {
+    transform: translateY(0px); 
+    transition: transform 0.4s ease, z-index 1s;
+    z-index: 1;
+}
+
+.open .letter {
+    transform: translateY(-90px) rotate(-2deg); /* Diperbesar dari -60px */
+    transition: transform 0.4s 0.6s ease, z-index 0.6s;
+    z-index: 2;
+}
+
+.letter-corner {
+    position: absolute;
+    width: 30px; /* Diperbesar dari 20px */
+    height: 30px; /* Diperbesar dari 20px */
+    border: 3px solid #ffd1dc; /* Diperbesar dari 2px */
+    border-radius: 7.5px; /* Diperbesar dari 5px */
+    z-index: 3;
+}
+
+.corner-tl { top: 15px; left: 15px; border-right: none; border-bottom: none; }
+.corner-br { bottom: 15px; right: 15px; border-left: none; border-top: none; }
+
+.hearts, .sparkles {
+    position: absolute;
+    top: 135px; /* Diperbesar dari 90px */
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.heart, .sparkle {
+    position: absolute;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.heart:before,
+.heart:after {
+    content: "";
+    position: absolute;
+    left: 37.5px; /* Diperbesar dari 25px */
+    top: 0;
+    width: 37.5px; /* Diperbesar dari 25px */
+    height: 60px; /* Diperbesar dari 40px */
+    background: var(--color-heart);
+    border-radius: 37.5px 37.5px 0 0; /* Diperbesar dari 25px 25px 0 0 */
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart:after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.sparkle {
+    width: 12px; /* Diperbesar dari 8px */
+    height: 12px; /* Diperbesar dari 8px */
+    background: var(--color-sparkle);
+    border-radius: 50%;
+    animation: sparkleTwinkle 1s infinite;
+}
+
+.close .heart,
+.close .sparkle {
+    opacity: 0;
+    animation: none;
+}
+
+.a1 { left: 30%; transform: scale(0.6); animation: slideUp 4s linear infinite, sideSway 2s ease-in-out infinite alternate; }
+.a2 { left: 65%; animation: slideUp 5s linear infinite, sideSway 4s ease-in-out infinite alternate; }
+.a3 { left: 15%; transform: scale(0.8); animation: slideUp 7s linear infinite, sideSway 2s ease-in-out infinite alternate; }
+
+.s1 { left: 40%; animation: sparkleUp 3s linear infinite; }
+.s2 { left: 70%; animation: sparkleUp 4s linear infinite; }
+.s3 { left: 55%; animation: sparkleUp 5s linear infinite; }
+
+@keyframes slideUp {
+    0% { top: 0; }
+    100% { top: -900px; } /* Diperbesar dari -600px */
+}
+
+@keyframes sideSway {
+    0% { margin-left: 0; }
+    50% { margin-left: 75px; } /* Diperbesar dari 50px */
+    100% { margin-left: 0; }
+}
+
+@keyframes sparkleUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-750px) rotate(360deg); opacity: 0; } /* Diperbesar dari -500px */
+}
+
+@keyframes sparkleTwinkle {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+}
+
+body {
+    background-color: var(--color-bg);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reset {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.reset button {
+    font-weight: 600;
+    transition: all 0.3s ease;
+    background-color: #00b7ff;
+    border: 2px solid var(--color-env2);
+    border-radius: 20px;
+    color: white;
+    padding: 15px 30px; /* Diperbesar dari 12px 25px */
+    margin: 10px;
+    font-size: 18px; /* Diperbesar dari 16px */
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    font-family: Arial, sans-serif;
+}
+
+.reset button:hover {
+    background-color: var(--color-flap);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 7px 25px rgba(0,0,0,0.2);
+}
+
+.fadil{
+    width: 7%;
+    height: 10%;
+    align-items: center;
+}
+
+.foto{
+    position: absolute;
+
+}
